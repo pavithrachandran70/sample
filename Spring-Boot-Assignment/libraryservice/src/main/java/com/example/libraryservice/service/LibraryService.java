@@ -5,18 +5,19 @@ import com.example.libraryservice.dto.LibraryDto;
 import com.example.libraryservice.entity.Library;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface LibraryService {
 
-    Library create(Library library);
+    LibraryDto create(LibraryDto libraryDto);
 
-    List<Library> findAll();
+    List<LibraryDto> findAll();
 
-    Library findById(Long id);
+    LibraryDto findById(Long id);
 
-    Library update(Long id, Library updatedLibrary);
+    LibraryDto updateById(Long id, LibraryDto updatedLibraryDto);
 
-    void delete(Long id);
+    void deleteById(Long id);
 
     LibraryDto getLibraryWithBooks(Long id);
 }

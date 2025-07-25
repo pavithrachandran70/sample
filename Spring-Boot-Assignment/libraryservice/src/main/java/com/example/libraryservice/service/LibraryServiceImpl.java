@@ -14,12 +14,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
 
 
-    private LibraryRepository repository;
+    private LibraryRepository libraryRepository;
+
     private ModelMapper modelMapper;
 
     private RestTemplate restTemplate;
@@ -27,48 +29,77 @@ public class LibraryServiceImpl implements LibraryService {
 //        this.restTemplate = restTemplate;
 //    }
     public LibraryServiceImpl(LibraryRepository repo, ModelMapper modelMapper, RestTemplate restTemplate) {
-        this.repository = repo;
+        this.libraryRepository = repo;
         this.modelMapper = modelMapper;
         this.restTemplate = restTemplate;
     }
-
-
 
 
     //Base URL to call the external Book Service.
     //Appends library ID to this URL to fetch books belonging to a specific library.
     private final String BOOK_SERVICE_BASE_URL = "http://localhost:8091/api/books/library/";
 
-    public Library create(Library library) {
-        return repository.save(library);
-    }
+//    public Library create(Library library) {
+//        return libraryRepository.save(library);
+//    }
+   @Override
+    public LibraryDto create(LibraryDto libraryDto) {
+    Library library = modelMapper.map(libraryDto, Library.class);
+    return modelMapper.map(libraryRepository.save(library), LibraryDto.class);
+}
 
     //Returns all libraries from the database.
-    public List<Library> findAll() {
-        return repository.findAll();
+//    public List<Library> findAll() {
+//        return libraryRepository.findAll();
+//    }
+    @Override
+    public List<LibraryDto> findAll() {
+        return libraryRepository.findAll().stream()
+                .map(lib -> modelMapper.map(lib, LibraryDto.class))
+                .collect(Collectors.toList());
     }
 
     //Finds a library by ID or returns null if not found.
-    public Library findById(Long id) {
-        return repository.findById(id)
+//    public Library findById(Long id) {
+//        return libraryRepository.findById(id)
+//                .orElseThrow(() -> new LibraryNotFoundException("Library not found with id: " + id));
+//
+//    }
+    @Override
+    public LibraryDto findById(Long id) {
+        Library library = libraryRepository.findById(id)
                 .orElseThrow(() -> new LibraryNotFoundException("Library not found with id: " + id));
-
+        return modelMapper.map(library, LibraryDto.class);
     }
 
-    public Library update(Long id, Library updatedLibrary) {
-        return repository.findById(id).map(existing -> {
-            existing.setName(updatedLibrary.getName());
-            existing.setCity(updatedLibrary.getCity());
-            return repository.save(existing);
-        }).orElse(null);
-    }
+//    public Library updateById(Long id, Library updatedLibrary) {
+//        return libraryRepository.findById(id).map(existing -> {
+//            existing.setName(updatedLibrary.getName());
+//            existing.setCity(updatedLibrary.getCity());
+//            return libraryRepository.save(existing);
+//        }).orElse(null);
+//    }
+@Override
+public LibraryDto updateById(Long id, LibraryDto dto) {
+    Library updated = libraryRepository.findById(id).map(existing -> {
+        existing.setName(dto.getName());
+        existing.setCity(dto.getCity());
+        return libraryRepository.save(existing);
+    }).orElseThrow(() -> new LibraryNotFoundException("Library not found with id: " + id));
+    return modelMapper.map(updated, LibraryDto.class);
+}
 
-    public void delete(Long id) {
-        repository.deleteById(id);
+//    public void deleteById(Long id) {
+//        libraryRepository.deleteById(id);
+//    }
+
+    @Override
+    public void deleteById(Long id) {
+        libraryRepository.deleteById(id);
     }
 
     public LibraryDto getLibraryWithBooks(Long id) {
-        Library library = repository.findById(id)
+        Library library = libraryRepository.findById(id)
                 .orElseThrow(() -> new LibraryNotFoundException("Library not found with id: " + id));
         if (library == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Library not found");
