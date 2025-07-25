@@ -36,3 +36,4 @@ jobs:
 
       - name: Build and Analyze
         run: mvn clean verify sonar:sonar -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+
