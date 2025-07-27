@@ -116,17 +116,10 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-				<plugin>
-					<groupId>org.sonarsource.scanner.maven</groupId>
-					<artifactId>sonar-maven-plugin</artifactId>
-					<version>3.11.0.3922</version>
-				</plugin>
-
-
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.11</version>
+				<version>0.8.10</version>
 				<executions>
 					<execution>
 						<id>prepare-agent</id>
@@ -136,13 +129,19 @@
 					</execution>
 					<execution>
 						<id>report</id>
-						<phase>prepare-package</phase>
+						<phase>verify</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
+
+
+
+
+
+
 		</plugins>
 	</build>
 </project>
