@@ -25,91 +25,69 @@ public class LibraryServiceImpl implements LibraryService {
     private ModelMapper modelMapper;
 
     private RestTemplate restTemplate;
-//    public LibraryServiceImpl(RestTemplate restTemplate) {
-//        this.restTemplate = restTemplate;
-//    }
-<span class="fc" id="L31">    public LibraryServiceImpl(LibraryRepository repo, ModelMapper modelMapper, RestTemplate restTemplate) {</span>
-<span class="fc" id="L32">        this.libraryRepository = repo;</span>
-<span class="fc" id="L33">        this.modelMapper = modelMapper;</span>
-<span class="fc" id="L34">        this.restTemplate = restTemplate;</span>
-<span class="fc" id="L35">    }</span>
+
+<span class="fc" id="L29">    public LibraryServiceImpl(LibraryRepository repo, ModelMapper modelMapper, RestTemplate restTemplate) {</span>
+<span class="fc" id="L30">        this.libraryRepository = repo;</span>
+<span class="fc" id="L31">        this.modelMapper = modelMapper;</span>
+<span class="fc" id="L32">        this.restTemplate = restTemplate;</span>
+<span class="fc" id="L33">    }</span>
 
 
     //Base URL to call the external Book Service.
     //Appends library ID to this URL to fetch books belonging to a specific library.
-<span class="fc" id="L40">    private final String BOOK_SERVICE_BASE_URL = &quot;http://localhost:8091/api/books/library/&quot;;</span>
+<span class="fc" id="L38">    private final String BOOK_SERVICE_BASE_URL = &quot;http://localhost:8091/api/books/library/&quot;;</span>
 
-//    public Library create(Library library) {
-//        return libraryRepository.save(library);
-//    }
    @Override
     public LibraryDto create(LibraryDto libraryDto) {
-<span class="fc" id="L47">    Library library = modelMapper.map(libraryDto, Library.class);</span>
-<span class="fc" id="L48">    return modelMapper.map(libraryRepository.save(library), LibraryDto.class);</span>
+<span class="fc" id="L42">    Library library = modelMapper.map(libraryDto, Library.class);</span>
+<span class="fc" id="L43">    return modelMapper.map(libraryRepository.save(library), LibraryDto.class);</span>
 }
 
-    //Returns all libraries from the database.
-//    public List&lt;Library&gt; findAll() {
-//        return libraryRepository.findAll();
-//    }
+
     @Override
     public List&lt;LibraryDto&gt; findAll() {
-<span class="fc" id="L57">        return libraryRepository.findAll().stream()</span>
-<span class="fc" id="L58">                .map(lib -&gt; modelMapper.map(lib, LibraryDto.class))</span>
-<span class="fc" id="L59">                .collect(Collectors.toList());</span>
+<span class="fc" id="L49">        return libraryRepository.findAll().stream()</span>
+<span class="fc" id="L50">                .map(lib -&gt; modelMapper.map(lib, LibraryDto.class))</span>
+<span class="fc" id="L51">                .collect(Collectors.toList());</span>
     }
 
-    //Finds a library by ID or returns null if not found.
-//    public Library findById(Long id) {
-//        return libraryRepository.findById(id)
-//                .orElseThrow(() -&gt; new LibraryNotFoundException(&quot;Library not found with id: &quot; + id));
-//
-//    }
+
     @Override
     public LibraryDto findById(Long id) {
-<span class="fc" id="L70">        Library library = libraryRepository.findById(id)</span>
-<span class="fc" id="L71">                .orElseThrow(() -&gt; new LibraryNotFoundException(&quot;Library not found with id: &quot; + id));</span>
-<span class="fc" id="L72">        return modelMapper.map(library, LibraryDto.class);</span>
+<span class="fc" id="L57">        Library library = libraryRepository.findById(id)</span>
+<span class="fc" id="L58">                .orElseThrow(() -&gt; new LibraryNotFoundException(&quot;Library not found with id: &quot; + id));</span>
+<span class="fc" id="L59">        return modelMapper.map(library, LibraryDto.class);</span>
     }
 
-//    public Library updateById(Long id, Library updatedLibrary) {
-//        return libraryRepository.findById(id).map(existing -&gt; {
-//            existing.setName(updatedLibrary.getName());
-//            existing.setCity(updatedLibrary.getCity());
-//            return libraryRepository.save(existing);
-//        }).orElse(null);
-//    }
+
 @Override
 public LibraryDto updateById(Long id, LibraryDto dto) {
-<span class="fc" id="L84">    Library updated = libraryRepository.findById(id).map(existing -&gt; {</span>
-<span class="fc" id="L85">        existing.setName(dto.getName());</span>
-<span class="fc" id="L86">        existing.setCity(dto.getCity());</span>
-<span class="fc" id="L87">        return libraryRepository.save(existing);</span>
-<span class="fc" id="L88">    }).orElseThrow(() -&gt; new LibraryNotFoundException(&quot;Library not found with id: &quot; + id));</span>
-<span class="fc" id="L89">    return modelMapper.map(updated, LibraryDto.class);</span>
+<span class="fc" id="L65">    Library updated = libraryRepository.findById(id).map(existing -&gt; {</span>
+<span class="fc" id="L66">        existing.setName(dto.getName());</span>
+<span class="fc" id="L67">        existing.setCity(dto.getCity());</span>
+<span class="fc" id="L68">        return libraryRepository.save(existing);</span>
+<span class="fc" id="L69">    }).orElseThrow(() -&gt; new LibraryNotFoundException(&quot;Library not found with id: &quot; + id));</span>
+<span class="fc" id="L70">    return modelMapper.map(updated, LibraryDto.class);</span>
 }
 
-//    public void deleteById(Long id) {
-//        libraryRepository.deleteById(id);
-//    }
 
     @Override
     public void deleteById(Long id) {
-<span class="fc" id="L98">        libraryRepository.deleteById(id);</span>
-<span class="fc" id="L99">    }</span>
+<span class="fc" id="L76">        libraryRepository.deleteById(id);</span>
+<span class="fc" id="L77">    }</span>
 
     public LibraryDto getLibraryWithBooks(Long id) {
-<span class="fc" id="L102">        Library library = libraryRepository.findById(id)</span>
-<span class="fc" id="L103">                .orElseThrow(() -&gt; new LibraryNotFoundException(&quot;Library not found with id: &quot; + id));</span>
-<span class="pc bpc" id="L104" title="1 of 2 branches missed.">        if (library == null) {</span>
-<span class="nc" id="L105">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;Library not found&quot;);</span>
+<span class="fc" id="L80">        Library library = libraryRepository.findById(id)</span>
+<span class="fc" id="L81">                .orElseThrow(() -&gt; new LibraryNotFoundException(&quot;Library not found with id: &quot; + id));</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if (library == null) {</span>
+<span class="nc" id="L83">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;Library not found&quot;);</span>
 
         }
 
-<span class="fc" id="L109">        BookDto[] books = restTemplate.getForObject( BOOK_SERVICE_BASE_URL+ id, BookDto[].class);</span>
-<span class="fc" id="L110">        List&lt;BookDto&gt; bookList = Arrays.asList(books);</span>
+<span class="fc" id="L87">        BookDto[] books = restTemplate.getForObject( BOOK_SERVICE_BASE_URL+ id, BookDto[].class);</span>
+<span class="fc" id="L88">        List&lt;BookDto&gt; bookList = Arrays.asList(books);</span>
 
-<span class="fc" id="L112">        return new LibraryDto(library.getId(), library.getName(), library.getCity(), bookList);</span>
+<span class="fc" id="L90">        return new LibraryDto(library.getId(), library.getName(), library.getCity(), bookList);</span>
     }
 
 }

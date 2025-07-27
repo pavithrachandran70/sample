@@ -37,7 +37,7 @@ jobs:
           args: >
             -Dsonar.organization=pavithrachandran70
             -Dsonar.projectKey=pavithrachandran70_sample
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml .
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 

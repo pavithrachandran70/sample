@@ -25,9 +25,7 @@ public class LibraryServiceImpl implements LibraryService {
     private ModelMapper modelMapper;
 
     private RestTemplate restTemplate;
-//    public LibraryServiceImpl(RestTemplate restTemplate) {
-//        this.restTemplate = restTemplate;
-//    }
+
     public LibraryServiceImpl(LibraryRepository repo, ModelMapper modelMapper, RestTemplate restTemplate) {
         this.libraryRepository = repo;
         this.modelMapper = modelMapper;
@@ -39,19 +37,13 @@ public class LibraryServiceImpl implements LibraryService {
     //Appends library ID to this URL to fetch books belonging to a specific library.
     private final String BOOK_SERVICE_BASE_URL = "http://localhost:8091/api/books/library/";
 
-//    public Library create(Library library) {
-//        return libraryRepository.save(library);
-//    }
    @Override
     public LibraryDto create(LibraryDto libraryDto) {
     Library library = modelMapper.map(libraryDto, Library.class);
     return modelMapper.map(libraryRepository.save(library), LibraryDto.class);
 }
 
-    //Returns all libraries from the database.
-//    public List<Library> findAll() {
-//        return libraryRepository.findAll();
-//    }
+
     @Override
     public List<LibraryDto> findAll() {
         return libraryRepository.findAll().stream()
@@ -59,12 +51,7 @@ public class LibraryServiceImpl implements LibraryService {
                 .collect(Collectors.toList());
     }
 
-    //Finds a library by ID or returns null if not found.
-//    public Library findById(Long id) {
-//        return libraryRepository.findById(id)
-//                .orElseThrow(() -> new LibraryNotFoundException("Library not found with id: " + id));
-//
-//    }
+
     @Override
     public LibraryDto findById(Long id) {
         Library library = libraryRepository.findById(id)
@@ -72,13 +59,7 @@ public class LibraryServiceImpl implements LibraryService {
         return modelMapper.map(library, LibraryDto.class);
     }
 
-//    public Library updateById(Long id, Library updatedLibrary) {
-//        return libraryRepository.findById(id).map(existing -> {
-//            existing.setName(updatedLibrary.getName());
-//            existing.setCity(updatedLibrary.getCity());
-//            return libraryRepository.save(existing);
-//        }).orElse(null);
-//    }
+
 @Override
 public LibraryDto updateById(Long id, LibraryDto dto) {
     Library updated = libraryRepository.findById(id).map(existing -> {
@@ -89,9 +70,6 @@ public LibraryDto updateById(Long id, LibraryDto dto) {
     return modelMapper.map(updated, LibraryDto.class);
 }
 
-//    public void deleteById(Long id) {
-//        libraryRepository.deleteById(id);
-//    }
 
     @Override
     public void deleteById(Long id) {

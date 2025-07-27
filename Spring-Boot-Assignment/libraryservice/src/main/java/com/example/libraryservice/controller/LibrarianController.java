@@ -13,44 +13,7 @@ import java.util.List;
 @RequestMapping("/api/librarians")
 public class LibrarianController {
 
-//    @Autowired
-//    private LibrarianService service;
-//
-//    @PostMapping
-//    public Librarian create(@RequestBody Librarian librarian) {
-//
-//        return service.create(librarian);
-//    }
-//
-//    @GetMapping
-//    public List<Librarian> getAll() {
-//
-//        return service.findAll();
-//    }
-//
-//    @GetMapping("/{id}")
-//    public Librarian getById(@PathVariable Long id) {
-//
-//        return service.findById(id);
-//    }
-//
-//    @GetMapping("/library/{libraryId}")
-//    public List<Librarian> getByLibraryId(@PathVariable Long libraryId) {
-//
-//        return service.findByLibraryId(libraryId);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public Librarian updateById(@PathVariable Long id, @RequestBody Librarian librarian) {
-//
-//        return service.updateById(id, librarian);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public void deleteById(@PathVariable Long id) {
-//
-//        service.deleteById(id);
-//    }
+
 @Autowired
      private LibrarianService service;
 

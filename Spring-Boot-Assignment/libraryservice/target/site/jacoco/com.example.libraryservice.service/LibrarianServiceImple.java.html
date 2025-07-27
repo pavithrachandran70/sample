@@ -12,102 +12,58 @@ import java.util.List;
 @Service
 public class LibrarianServiceImple implements LibrarianService {
 
-//    private final LibrarianRepository librarianRepository;
-//
-//    public LibrarianServiceImple(LibrarianRepository repository) {
-//
-//        this.librarianRepository = repository;
-//    }
-//
-//    @Override
-//    public Librarian create(Librarian librarian) {
-//
-//        return librarianRepository.save(librarian);
-//    }
-//
-//    @Override
-//    public List&lt;Librarian&gt; findAll() {
-//        return librarianRepository.findAll();
-//    }
-//
-//    @Override
-//    public Librarian findById(Long id) {
-//        return librarianRepository.findById(id)
-//                .orElseThrow(() -&gt; new RuntimeException(&quot;Librarian not found with id: &quot; + id));
-//    }
-//
-//    @Override
-//    public List&lt;Librarian&gt; findByLibraryId(Long libraryId) {
-//        return librarianRepository.findByLibraryId(libraryId);
-//    }
-//
-//    @Override
-//    public Librarian updateById(Long id, Librarian updatedLibrarian) {
-//        return librarianRepository.findById(id).map(existing -&gt; {
-//            existing.setName(updatedLibrarian.getName());
-//            existing.setEmail(updatedLibrarian.getEmail());
-//            existing.setLibraryId(updatedLibrarian.getLibraryId());
-//            return librarianRepository.save(existing);
-//        }).orElseThrow(() -&gt; new RuntimeException(&quot;Librarian not found with id: &quot; + id));
-//    }
-//
-//    @Override
-//    public void deleteById(Long id) {
-//        librarianRepository.deleteById(id);
-//    }
-
 
     private final LibrarianRepository librarianRepository;
 
     private final ModelMapper modelMapper;
 
-<span class="nc" id="L64">    public LibrarianServiceImple(LibrarianRepository repository, ModelMapper modelMapper) {</span>
-<span class="nc" id="L65">        this.librarianRepository = repository;</span>
-<span class="nc" id="L66">        this.modelMapper = modelMapper;</span>
-<span class="nc" id="L67">    }</span>
+<span class="nc" id="L20">    public LibrarianServiceImple(LibrarianRepository repository, ModelMapper modelMapper) {</span>
+<span class="nc" id="L21">        this.librarianRepository = repository;</span>
+<span class="nc" id="L22">        this.modelMapper = modelMapper;</span>
+<span class="nc" id="L23">    }</span>
 
     @Override
     public LibrarianDto create(LibrarianDto dto) {
-<span class="nc" id="L71">        Librarian librarian = modelMapper.map(dto, Librarian.class);</span>
-<span class="nc" id="L72">        return modelMapper.map(librarianRepository.save(librarian), LibrarianDto.class);</span>
+<span class="nc" id="L27">        Librarian librarian = modelMapper.map(dto, Librarian.class);</span>
+<span class="nc" id="L28">        return modelMapper.map(librarianRepository.save(librarian), LibrarianDto.class);</span>
     }
 
     @Override
     public List&lt;LibrarianDto&gt; findAll() {
-<span class="nc" id="L77">        return librarianRepository.findAll().stream()</span>
-<span class="nc" id="L78">                .map(lib -&gt; modelMapper.map(lib, LibrarianDto.class))</span>
-<span class="nc" id="L79">                .toList();</span>
+<span class="nc" id="L33">        return librarianRepository.findAll().stream()</span>
+<span class="nc" id="L34">                .map(lib -&gt; modelMapper.map(lib, LibrarianDto.class))</span>
+<span class="nc" id="L35">                .toList();</span>
     }
 
     @Override
     public LibrarianDto findById(Long id) {
-<span class="nc" id="L84">        Librarian librarian = librarianRepository.findById(id)</span>
-<span class="nc" id="L85">                .orElseThrow(() -&gt; new RuntimeException(&quot;Librarian not found with id: &quot; + id));</span>
-<span class="nc" id="L86">        return modelMapper.map(librarian, LibrarianDto.class);</span>
+<span class="nc" id="L40">        Librarian librarian = librarianRepository.findById(id)</span>
+<span class="nc" id="L41">                .orElseThrow(() -&gt; new RuntimeException(&quot;Librarian not found with id: &quot; + id));</span>
+<span class="nc" id="L42">        return modelMapper.map(librarian, LibrarianDto.class);</span>
     }
 
     @Override
     public List&lt;LibrarianDto&gt; findByLibraryId(Long libraryId) {
-<span class="nc" id="L91">        return librarianRepository.findByLibraryId(libraryId).stream()</span>
-<span class="nc" id="L92">                .map(lib -&gt; modelMapper.map(lib, LibrarianDto.class))</span>
-<span class="nc" id="L93">                .toList();</span>
+<span class="nc" id="L47">        return librarianRepository.findByLibraryId(libraryId).stream()</span>
+<span class="nc" id="L48">                .map(lib -&gt; modelMapper.map(lib, LibrarianDto.class))</span>
+<span class="nc" id="L49">                .toList();</span>
     }
 
     @Override
     public LibrarianDto updateById(Long id, LibrarianDto dto) {
-<span class="nc" id="L98">        Librarian updated = librarianRepository.findById(id).map(existing -&gt; {</span>
-<span class="nc" id="L99">            existing.setName(dto.getName());</span>
-<span class="nc" id="L100">            existing.setEmail(dto.getEmail());</span>
-<span class="nc" id="L101">            existing.setLibraryId(dto.getLibraryId());</span>
-<span class="nc" id="L102">            return librarianRepository.save(existing);</span>
-<span class="nc" id="L103">        }).orElseThrow(() -&gt; new RuntimeException(&quot;Librarian not found with id: &quot; + id));</span>
-<span class="nc" id="L104">        return modelMapper.map(updated, LibrarianDto.class);</span>
+<span class="nc" id="L54">        Librarian updated = librarianRepository.findById(id).map(existing -&gt; {</span>
+<span class="nc" id="L55">            existing.setName(dto.getName());</span>
+<span class="nc" id="L56">            existing.setEmail(dto.getEmail());</span>
+<span class="nc" id="L57">            existing.setLibraryId(dto.getLibraryId());</span>
+<span class="nc" id="L58">            return librarianRepository.save(existing);</span>
+<span class="nc" id="L59">        }).orElseThrow(() -&gt; new RuntimeException(&quot;Librarian not found with id: &quot; + id));</span>
+<span class="nc" id="L60">        return modelMapper.map(updated, LibrarianDto.class);</span>
     }
 
     @Override
     public void deleteById(Long id) {
-<span class="nc" id="L109">        librarianRepository.deleteById(id);</span>
-<span class="nc" id="L110">    }</span>
+<span class="nc" id="L65">        librarianRepository.deleteById(id);</span>
+<span class="nc" id="L66">    }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

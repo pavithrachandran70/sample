@@ -16,105 +16,36 @@ import java.util.List;
     @Autowired
     //bookservice
     private BookService service;
-//
-//    @PostMapping
-//    //createbook
-////    public Book add(@RequestBody Book book)
-//   public Book createBook(@RequestBody Book book) {
-//
-//        return service.save(book);
-//    }
-//
-//    @GetMapping
-//    //getallbooks
-////    public List&lt;Book&gt; list()
-//    public List&lt;Book&gt; getAllBooks()
-//    {
-//
-//        return service.findAll();
-//    }
-//
-//    @GetMapping(&quot;/{id}&quot;)
-//    //getbookbyid
-////    public Book get(@PathVariable Long id)
-//    public Book getBookById(@PathVariable Long id) {
-//
-//        return service.findById(id);
-//    }
-//
-//    @PutMapping(&quot;/{id}&quot;)
-//    //ypdatebookbyid
-////    public Book update(@PathVariable Long id, @RequestBody Book book)
-//    public Book updateBookById(@PathVariable Long id, @RequestBody Book book){
-//
-//        return service.updateById(id, book);
-//    }
-//
-//    @DeleteMapping(&quot;/{id}&quot;)
-//    //deletebookbyid
-////    public void delete(@PathVariable Long id)
-//    public void deleteBookById(@PathVariable Long id){
-//
-//        service.deleteById(id);
-//    }
-//
-//    @GetMapping(&quot;/library/{libraryId}&quot;)
-//    public List&lt;Book&gt; getBooksByLibraryId(@PathVariable Long libraryId) {
-//        return service.getBooksByLibraryId(libraryId);
-//    }
-//
-//
-//    // Scenario 1: Get books by title and price range
-//    @GetMapping(&quot;/search&quot;)
-//    public List&lt;Book&gt; searchBooksByTitleAndPrice(
-//            @RequestParam String title,
-//            @RequestParam(required = false) Double minPrice,
-//            @RequestParam(required = false) Double maxPrice) {
-//
-//        if (minPrice == null || maxPrice == null) {
-//            throw new IllegalArgumentException(&quot;Both minPrice and maxPrice are required.&quot;);
-//        }
-//
-//        return service.findByTitleAndPriceRange(title, minPrice, maxPrice);
-//    }
-//
-//    // Scenario 2: Get a book by title and author
-//    @GetMapping(&quot;/search/author&quot;)
-//    public Book searchBookByTitleAndAuthor(
-//            @RequestParam String title,
-//            @RequestParam String author) {
-//        return service.findByTitleAndAuthor(title, author);
-//    }
 
     @PostMapping
 
     public BookDTO create(@RequestBody Book book) {
-<span class="fc" id="L92">    return service.save(book);</span>
+<span class="fc" id="L23">    return service.save(book);</span>
 }
 
     @GetMapping
     public List&lt;BookDTO&gt; getAllBooks() {
-<span class="fc" id="L97">        return service.findAll();</span>
+<span class="fc" id="L28">        return service.findAll();</span>
     }
 
     @GetMapping(&quot;/{id}&quot;)
     public BookDTO getById(@PathVariable Long id) {
-<span class="fc" id="L102">        return service.findById(id);</span>
+<span class="fc" id="L33">        return service.findById(id);</span>
     }
 
     @PutMapping(&quot;/{id}&quot;)
     public BookDTO updateById(@PathVariable Long id, @RequestBody Book book) {
-<span class="fc" id="L107">        return service.updateById(id, book);</span>
+<span class="fc" id="L38">        return service.updateById(id, book);</span>
     }
 
     @DeleteMapping(&quot;/{id}&quot;)
     public void deleteById(@PathVariable Long id) {
-<span class="fc" id="L112">        service.deleteById(id);</span>
-<span class="fc" id="L113">    }</span>
+<span class="fc" id="L43">        service.deleteById(id);</span>
+<span class="fc" id="L44">    }</span>
 
     @GetMapping(&quot;/library/{libraryId}&quot;)
     public List&lt;BookDTO&gt; getBooksByLibraryId(@PathVariable Long libraryId) {
-<span class="fc" id="L117">        return service.getBooksByLibraryId(libraryId);</span>
+<span class="fc" id="L48">        return service.getBooksByLibraryId(libraryId);</span>
     }
     // 🔍 Scenario 1: Get books by title and price range
     @GetMapping(&quot;/search&quot;)
@@ -123,11 +54,11 @@ import java.util.List;
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice) {
 
-<span class="pc bpc" id="L126" title="2 of 4 branches missed.">        if (minPrice == null || maxPrice == null) {</span>
-<span class="nc" id="L127">            throw new IllegalArgumentException(&quot;Both minPrice and maxPrice are required.&quot;);</span>
+<span class="pc bpc" id="L57" title="2 of 4 branches missed.">        if (minPrice == null || maxPrice == null) {</span>
+<span class="nc" id="L58">            throw new IllegalArgumentException(&quot;Both minPrice and maxPrice are required.&quot;);</span>
         }
 
-<span class="fc" id="L130">        return service.findByTitleAndPriceRange(title, minPrice, maxPrice);</span>
+<span class="fc" id="L61">        return service.findByTitleAndPriceRange(title, minPrice, maxPrice);</span>
     }
 
 //    localhos:8092/api/books/search?title=&quot;bookname&quot;?minPrice=100?max
@@ -137,7 +68,7 @@ import java.util.List;
     public BookDTO searchBookByTitleAndAuthor(
             @RequestParam String title,
             @RequestParam String author) {
-<span class="fc" id="L140">        return service.findByTitleAndAuthor(title, author);</span>
+<span class="fc" id="L71">        return service.findByTitleAndAuthor(title, author);</span>
     }
 
 }

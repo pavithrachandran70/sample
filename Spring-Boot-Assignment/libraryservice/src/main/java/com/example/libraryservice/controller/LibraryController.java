@@ -107,39 +107,7 @@ public class LibraryController {
     @Autowired
     private LibraryService service;
 
-//    @PostMapping
-//    public Library create(@RequestBody Library library) {
-//        return service.create(library);
-//    }
-//
-//
-//    @GetMapping
-//    public List<Library> getAll() {
-//        return service.findAll();
-//    }
-//
-//    @GetMapping("/{id}")
-//    public Library getById(@PathVariable Long id) {
-//        return service.findById(id);
-//    }
-//
-//    //    @GetMapping("/{id}/with-books", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @GetMapping(value = "/{id}/with-books", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public LibraryDto getWithBooks(@PathVariable Long id) {
-//        return service.getLibraryWithBooks(id);
-//    }
-//
-//
-//
-//    @PutMapping("/{id}")
-//    public Library updateById(@PathVariable Long id, @RequestBody Library updatedLibrary) {
-//        return service.updateById(id, updatedLibrary);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public void deleteById(@PathVariable Long id) {
-//        service.deleteById(id);
-//    }
+
 @PostMapping
 public LibraryDto create(@RequestBody LibraryDto libraryDto) {
 

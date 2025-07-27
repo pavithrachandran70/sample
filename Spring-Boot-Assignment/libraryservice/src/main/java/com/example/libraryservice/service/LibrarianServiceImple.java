@@ -12,50 +12,6 @@ import java.util.List;
 @Service
 public class LibrarianServiceImple implements LibrarianService {
 
-//    private final LibrarianRepository librarianRepository;
-//
-//    public LibrarianServiceImple(LibrarianRepository repository) {
-//
-//        this.librarianRepository = repository;
-//    }
-//
-//    @Override
-//    public Librarian create(Librarian librarian) {
-//
-//        return librarianRepository.save(librarian);
-//    }
-//
-//    @Override
-//    public List<Librarian> findAll() {
-//        return librarianRepository.findAll();
-//    }
-//
-//    @Override
-//    public Librarian findById(Long id) {
-//        return librarianRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Librarian not found with id: " + id));
-//    }
-//
-//    @Override
-//    public List<Librarian> findByLibraryId(Long libraryId) {
-//        return librarianRepository.findByLibraryId(libraryId);
-//    }
-//
-//    @Override
-//    public Librarian updateById(Long id, Librarian updatedLibrarian) {
-//        return librarianRepository.findById(id).map(existing -> {
-//            existing.setName(updatedLibrarian.getName());
-//            existing.setEmail(updatedLibrarian.getEmail());
-//            existing.setLibraryId(updatedLibrarian.getLibraryId());
-//            return librarianRepository.save(existing);
-//        }).orElseThrow(() -> new RuntimeException("Librarian not found with id: " + id));
-//    }
-//
-//    @Override
-//    public void deleteById(Long id) {
-//        librarianRepository.deleteById(id);
-//    }
-
 
     private final LibrarianRepository librarianRepository;
 

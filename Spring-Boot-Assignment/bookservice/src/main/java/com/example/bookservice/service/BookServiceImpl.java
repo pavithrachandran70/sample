@@ -13,59 +13,6 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
-//    //bookrepository
-//    private final BookRepository repo;
-////    @Autowired
-////    private BookRepository repo;
-//
-//    public BookServiceImpl(BookRepository repo) {
-//        this.repo = repo;
-//    }
-//
-//    //create
-//    public Book save(Book book) {
-//        return repo.save(book);
-//    }
-//
-//    public List<Book> findAll() {
-//        return repo.findAll();
-//    }
-//
-//    public Book findById(Long id) {
-//        return repo.findById(id)
-//                .orElseThrow(() -> new BookNotFoundException("Book not found with id: " + id));
-//
-//    }
-//
-//    public Book updateById(Long id, Book updated) {
-//        Book book = repo.findById(id)
-//                .orElseThrow(() -> new BookNotFoundException("Cannot update. Book not found with id: " + id));
-//        if (book != null) {
-//            book.setTitle(updated.getTitle());
-//            book.setAuthor(updated.getAuthor());
-//            book.setPrice(updated.getPrice());
-//            return repo.save(book);
-//        }
-//        return null;
-//    }
-//
-//    public void deleteById(Long id) {
-//        repo.deleteById(id);
-//    }
-//    public List<Book> getBooksByLibraryId(Long libraryId) {
-//        return repo.findByLibraryId(libraryId);
-//    }
-//
-//    @Override
-//    public List<Book> findByTitleAndPriceRange(String title, double minPrice, double maxPrice) {
-//        return repo.findByTitleAndPriceBetween(title, minPrice, maxPrice);
-//    }
-//
-//    @Override
-//    public Book findByTitleAndAuthor(String title, String author) {
-//        return repo.findByTitleAndAuthor(title, author);
-//    }
-
     private final BookRepository bookRepository;
 
     //maps fields between Book and BookDTO objects.

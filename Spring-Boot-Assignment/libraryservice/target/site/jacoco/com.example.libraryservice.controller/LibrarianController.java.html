@@ -13,76 +13,39 @@ import java.util.List;
 @RequestMapping(&quot;/api/librarians&quot;)
 <span class="nc" id="L14">public class LibrarianController {</span>
 
-//    @Autowired
-//    private LibrarianService service;
-//
-//    @PostMapping
-//    public Librarian create(@RequestBody Librarian librarian) {
-//
-//        return service.create(librarian);
-//    }
-//
-//    @GetMapping
-//    public List&lt;Librarian&gt; getAll() {
-//
-//        return service.findAll();
-//    }
-//
-//    @GetMapping(&quot;/{id}&quot;)
-//    public Librarian getById(@PathVariable Long id) {
-//
-//        return service.findById(id);
-//    }
-//
-//    @GetMapping(&quot;/library/{libraryId}&quot;)
-//    public List&lt;Librarian&gt; getByLibraryId(@PathVariable Long libraryId) {
-//
-//        return service.findByLibraryId(libraryId);
-//    }
-//
-//    @PutMapping(&quot;/{id}&quot;)
-//    public Librarian updateById(@PathVariable Long id, @RequestBody Librarian librarian) {
-//
-//        return service.updateById(id, librarian);
-//    }
-//
-//    @DeleteMapping(&quot;/{id}&quot;)
-//    public void deleteById(@PathVariable Long id) {
-//
-//        service.deleteById(id);
-//    }
+
 @Autowired
      private LibrarianService service;
 
     @PostMapping
     public LibrarianDto create(@RequestBody LibrarianDto librarianDto) {
-<span class="nc" id="L59">        return service.create(librarianDto);</span>
+<span class="nc" id="L22">        return service.create(librarianDto);</span>
     }
 
     @GetMapping
     public List&lt;LibrarianDto&gt; getAll() {
-<span class="nc" id="L64">        return service.findAll();</span>
+<span class="nc" id="L27">        return service.findAll();</span>
     }
 
     @GetMapping(&quot;/{id}&quot;)
     public LibrarianDto getById(@PathVariable Long id) {
-<span class="nc" id="L69">        return service.findById(id);</span>
+<span class="nc" id="L32">        return service.findById(id);</span>
     }
 
     @GetMapping(&quot;/library/{libraryId}&quot;)
     public List&lt;LibrarianDto&gt; getByLibraryId(@PathVariable Long libraryId) {
-<span class="nc" id="L74">        return service.findByLibraryId(libraryId);</span>
+<span class="nc" id="L37">        return service.findByLibraryId(libraryId);</span>
     }
 
     @PutMapping(&quot;/{id}&quot;)
     public LibrarianDto updateById(@PathVariable Long id, @RequestBody LibrarianDto librarianDto) {
-<span class="nc" id="L79">        return service.updateById(id, librarianDto);</span>
+<span class="nc" id="L42">        return service.updateById(id, librarianDto);</span>
     }
 
     @DeleteMapping(&quot;/{id}&quot;)
     public void deleteById(@PathVariable Long id) {
-<span class="nc" id="L84">        service.deleteById(id);</span>
-<span class="nc" id="L85">    }</span>
+<span class="nc" id="L47">        service.deleteById(id);</span>
+<span class="nc" id="L48">    }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

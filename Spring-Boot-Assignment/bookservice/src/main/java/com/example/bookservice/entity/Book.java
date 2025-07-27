@@ -14,9 +14,7 @@ public class Book {
     private String title;
     private String author;
     private double price;
-    //private long library id;
-    //findbyauthor
-    //
+
     public Book() {
     }
 
