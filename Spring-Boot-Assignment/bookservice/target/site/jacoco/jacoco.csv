@@ -1,0 +1,10 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+bookservice,com.example.bookservice.exception,BookNotFoundException,0,4,0,0,0,2,0,1,0,1
+bookservice,com.example.bookservice.exception,ErrorResponse,33,0,0,0,9,0,7,0,7,0
+bookservice,com.example.bookservice.exception,GlobalExceptionHandler,34,0,0,0,11,0,3,0,3,0
+bookservice,com.example.bookservice.controller,BookController,5,52,2,2,1,11,2,9,0,9
+bookservice,com.example.bookservice.service,BookServiceImpl,30,102,0,0,6,22,3,10,3,10
+bookservice,com.example.bookservice.entity,Book,0,53,0,0,0,22,0,12,0,12
+bookservice,com.example.bookservice.config,ModelMapperConfig,7,0,0,0,2,0,2,0,2,0
+bookservice,com.example.bookservice,BookserviceApplication,8,0,0,0,3,0,2,0,2,0
+bookservice,com.example.bookservice.dto,BookDTO,3,35,0,0,1,10,1,10,1,10

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LibrarianController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">libraryservice</a> &gt; <a href="index.source.html" class="el_package">com.example.libraryservice.controller</a> &gt; <span class="el_source">LibrarianController.java</span></div><h1>LibrarianController.java</h1><pre class="source lang-java linenums">package com.example.libraryservice.controller;
+
+
+import com.example.libraryservice.dto.LibrarianDto;
+import com.example.libraryservice.entity.Librarian;
+import com.example.libraryservice.service.LibrarianService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/api/librarians&quot;)
+<span class="nc" id="L14">public class LibrarianController {</span>
+
+//    @Autowired
+//    private LibrarianService service;
+//
+//    @PostMapping
+//    public Librarian create(@RequestBody Librarian librarian) {
+//
+//        return service.create(librarian);
+//    }
+//
+//    @GetMapping
+//    public List&lt;Librarian&gt; getAll() {
+//
+//        return service.findAll();
+//    }
+//
+//    @GetMapping(&quot;/{id}&quot;)
+//    public Librarian getById(@PathVariable Long id) {
+//
+//        return service.findById(id);
+//    }
+//
+//    @GetMapping(&quot;/library/{libraryId}&quot;)
+//    public List&lt;Librarian&gt; getByLibraryId(@PathVariable Long libraryId) {
+//
+//        return service.findByLibraryId(libraryId);
+//    }
+//
+//    @PutMapping(&quot;/{id}&quot;)
+//    public Librarian updateById(@PathVariable Long id, @RequestBody Librarian librarian) {
+//
+//        return service.updateById(id, librarian);
+//    }
+//
+//    @DeleteMapping(&quot;/{id}&quot;)
+//    public void deleteById(@PathVariable Long id) {
+//
+//        service.deleteById(id);
+//    }
+@Autowired
+     private LibrarianService service;
+
+    @PostMapping
+    public LibrarianDto create(@RequestBody LibrarianDto librarianDto) {
+<span class="nc" id="L59">        return service.create(librarianDto);</span>
+    }
+
+    @GetMapping
+    public List&lt;LibrarianDto&gt; getAll() {
+<span class="nc" id="L64">        return service.findAll();</span>
+    }
+
+    @GetMapping(&quot;/{id}&quot;)
+    public LibrarianDto getById(@PathVariable Long id) {
+<span class="nc" id="L69">        return service.findById(id);</span>
+    }
+
+    @GetMapping(&quot;/library/{libraryId}&quot;)
+    public List&lt;LibrarianDto&gt; getByLibraryId(@PathVariable Long libraryId) {
+<span class="nc" id="L74">        return service.findByLibraryId(libraryId);</span>
+    }
+
+    @PutMapping(&quot;/{id}&quot;)
+    public LibrarianDto updateById(@PathVariable Long id, @RequestBody LibrarianDto librarianDto) {
+<span class="nc" id="L79">        return service.updateById(id, librarianDto);</span>
+    }
+
+    @DeleteMapping(&quot;/{id}&quot;)
+    public void deleteById(@PathVariable Long id) {
+<span class="nc" id="L84">        service.deleteById(id);</span>
+<span class="nc" id="L85">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
