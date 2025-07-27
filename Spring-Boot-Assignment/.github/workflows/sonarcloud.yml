@@ -38,6 +38,8 @@ jobs:
             -Dsonar.organization=pavithrachandran70
             -Dsonar.projectKey=pavithrachandran70_sample
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+            -Dsonar.exclusions=**/target/**,**/jacoco-resources/**,**/prettify.js,**/*.min.js
+                     -Dsonar.javascript.exclusions=**/prettify.js
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
