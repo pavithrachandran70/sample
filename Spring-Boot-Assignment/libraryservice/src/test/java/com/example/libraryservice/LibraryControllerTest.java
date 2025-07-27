@@ -24,72 +24,73 @@ class LibraryControllerTest {
     @Mock
     private LibraryService service;
 
-    private Library sampleLibrary;
-    @MockBean
-    private RestTemplate restTemplate;
+    private LibraryDto sampleLibraryDto;
 
-    //setting the environment
     @BeforeEach
     void setUp() {
-        //initializes any @Mock, @InjectMocks, etc., declared in the test class.
         MockitoAnnotations.openMocks(this);
-        // test object being created before each test.
-        sampleLibrary = new Library(1L, "Central", "Bangalore");
+        sampleLibraryDto = new LibraryDto(1L, "Central", "Bangalore", List.of());
     }
 
     @Test
     void testCreate() {
-        //If service.create() is called with any Library object, then return sampleLibrary.”
-        when(service.create(any(Library.class))).thenReturn(sampleLibrary);
-        //calling the create method on your controller and passing sampleLibrary
-        Library result = controller.create(sampleLibrary);
+        when(service.create(any(LibraryDto.class))).thenReturn(sampleLibraryDto);
+
+        LibraryDto result = controller.create(sampleLibraryDto);
+
         assertNotNull(result);
         assertEquals("Central", result.getName());
-        //Verifies that the service.create() method was actually called once with sampleLibrary as the argument.
-        verify(service).create(sampleLibrary);
+        verify(service).create(sampleLibraryDto);
     }
 
     @Test
     void testGetAll() {
-        when(service.findAll()).thenReturn(List.of(sampleLibrary));
-        List<Library> libraries = controller.getAll();
-        assertEquals(1, libraries.size());
-        //Verifies that the findAll() method of the service was actually called.
+        when(service.findAll()).thenReturn(List.of(sampleLibraryDto));
+
+        List<LibraryDto> result = controller.getAll();
+
+        assertEquals(1, result.size());
+        assertEquals("Central", result.get(0).getName());
         verify(service).findAll();
     }
 
     @Test
     void testGetById() {
-        when(service.findById(1L)).thenReturn(sampleLibrary);
-        Library result = controller.getById(1L);
+        when(service.findById(1L)).thenReturn(sampleLibraryDto);
+
+        LibraryDto result = controller.getById(1L);
+
         assertEquals("Central", result.getName());
         verify(service).findById(1L);
     }
 
     @Test
-    void testGetWithBooks() {
-        // create a sample LibraryDto object
-        LibraryDto dto = new LibraryDto(1L, "Central", "Bangalore", List.of());
-        when(service.getLibraryWithBooks(1L)).thenReturn(dto);
-        LibraryDto result = controller.getWithBooks(1L);
-        assertEquals("Central", result.getName());
-        // verifies that the service method was called exactly once with 1L as the argument.
-        verify(service).getLibraryWithBooks(1L);
-    }
-
-    @Test
     void testUpdate() {
-        Library updated = new Library(1L, "Updated", "Mumbai");
-        when(service.update(eq(1L), any(Library.class))).thenReturn(updated);
-        Library result = controller.update(1L, updated);
+        LibraryDto updatedDto = new LibraryDto(1L, "Updated", "Mumbai", List.of());
+        when(service.updateById(eq(1L), any(LibraryDto.class))).thenReturn(updatedDto);
+
+        LibraryDto result = controller.updateById(1L, updatedDto);
+
         assertEquals("Updated", result.getName());
-        verify(service).update(1L, updated);
+        verify(service).updateById(1L, updatedDto);
     }
 
     @Test
     void testDelete() {
-        doNothing().when(service).delete(1L);
-        controller.delete(1L);
-        verify(service).delete(1L);
+        doNothing().when(service).deleteById(1L);
+
+        controller.deleteById(1L);
+
+        verify(service).deleteById(1L);
+    }
+
+    @Test
+    void testGetWithBooks() {
+        when(service.getLibraryWithBooks(1L)).thenReturn(sampleLibraryDto);
+
+        LibraryDto result = controller.getWithBooks(1L);
+
+        assertEquals("Central", result.getName());
+        verify(service).getLibraryWithBooks(1L);
     }
 }
